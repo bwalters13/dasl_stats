@@ -29,6 +29,7 @@ external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
+app.title = 'DASL Stats'
 
 app.layout = html.Div(children=[
     dcc.Location(id='url', refresh=False),
