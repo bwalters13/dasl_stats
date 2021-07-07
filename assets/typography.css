@@ -1,0 +1,38 @@
+    body {
+        font-family: monospace;
+        background-image: url('Untitled.png');
+        background-attachment: fixed;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: white;
+    }
+    
+    .topnav {
+        background-color: black;
+        overflow: hidden;
+        width: 101%;
+        margin-left: -8px;
+        margin-top: -8px;
+    }
+    
+    .topnav a {
+        display: inline;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: underline;
+        font-size: 25px;
+        float: right;
+    }
+    
+    .topnav h1 {
+        display: inline;
+        margin-left: 10px;
+        color: mediumturquoise;
+    }
