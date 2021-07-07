@@ -6,7 +6,7 @@ from dash.dependencies import Input, Output
 import dash_table
 
 
-df = pd.read_csv('../88season.csv')
+df = pd.read_csv('88season.csv')
 df['team'] = df['team'].replace("Celtics", "Cripples")
 df_team = df.groupby('team').sum()
 df_team['num_games'] = df.groupby('team')['game_id'].nunique()
@@ -14,7 +14,7 @@ for x in df_team.columns[1:14]:
     df_team[x] = (df_team[x]/df_team['num_games']).round(2)
 df_team_avg = df_team[df_team.columns[1:14]].reset_index()
 per36 = df.columns[3:16].tolist()
-adv_df = pd.read_csv('../88advanced.csv')
+adv_df = pd.read_csv('88advanced.csv')
 
 important_cols = ['Player'] + df.columns[2:16].tolist()
 
