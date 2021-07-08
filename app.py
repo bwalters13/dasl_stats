@@ -35,28 +35,45 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 app.title = 'DASL Stats'
 
+header = html.Div(className='topnav', children=[
+        html.Img(src=svg),
+        dcc.Link('Per 36 stats', href='/per36'),
+        dcc.Link('Advanced Stats', href='/advanced'),
+        dcc.Link('League Leaders', href='/league_leaders'),
+        dcc.Link('Glossary', href='/glossary')
+    ])
+
 app.layout = html.Div(children=[
     dcc.Location(id='url', refresh=False),
     html.Div(id='page-content')
 ])
 
 index_page = html.Div(children=[
-    html.Div(className='topnav', children=[
-        html.Img(src=svg),
-        dcc.Link('Per 36 stats', href='/per36'),
-        dcc.Link('Advanced Stats', href='/advanced'),
-        dcc.Link('League Leaders', href='/league_leaders')
-    ])
+    header
 ]),
+
+glossary_layout = html.Div(className='glossary',
+    children=[
+        header,
+        html.H1('GLOSSARY'),
+        html.H4('Usage: '),
+        html.P('Usage Percentage (available since the 1977-78 season in the NBA); the formula is 100 * ((FGA + 0.44 * FTA + TOV) * (Tm MP / 5)) / (MP * (Tm FGA + 0.44 * Tm FTA + Tm TOV)). Usage percentage is an estimate of the percentage of team plays used by a player while he was on the floor. '),
+        html.H4('True Shooting Percentage (TS%):'),
+        html.P("True Shooting Percentage; the formula is PTS / (2 * TSA). True shooting percentage is a measure of shooting efficiency that takes into account field goals, 3-point field goals, and free throws."),
+        html.H4('True Shooting Attempts (TSA):'),
+        html.P('TSA - True Shooting Attempts; the formula is FGA + 0.44 * FTA. '),
+        html.H4('Possessions:'),
+        html.P("A player's total possessions would be all of his scoring possessions, plus his missed field goals and free throws that weren't rebounded by his team, plus his turnovers. "),
+        html.H4("Scoring Possessions:"),
+        html.P("A player's scoring possessions would be his field goals that weren't assisted on, plus a certain percentage of his field goals that were assisted on, plus a certain percentage of his assists, plus his free throws made that represented a team scoring possession."),
+        html.H4("Floor Percentage:"),
+        html.P("Individual floor % is then just a player's scoring possessions divided by his total possessions. This statistic takes all areas of a player's offensive contribution, with the possible exception of his offensive rebounds (they are indirectly counted in the total possession formula). Many times, field goal percentages and free throw percentages are quoted as measures of a player's scoring efficiency. For guards, assist to turnover ratios are often quoted. Individual floor % sums it all up into one meaningful number."),
+
+    ])
 
 
 per36_layout = html.Div(children=[
-    html.Div(className='topnav', children=[
-        html.Img(src=svg),
-        dcc.Link('Per 36 stats', href='/per36'),
-        dcc.Link('Advanced Stats', href='/advanced'),
-        dcc.Link('League Leaders', href='/league_leaders')
-    ]),
+    header,
     html.H4(children='Per 36 Stats'),
     dcc.Dropdown(
         id='team-select',
@@ -93,12 +110,7 @@ per36_layout = html.Div(children=[
 ])
 
 advanced_layout = html.Div(children=[
-    html.Div(className='topnav', children=[
-        html.Img(src=svg),
-        dcc.Link('Per 36 stats', href='/per36'),
-        dcc.Link('Advanced Stats', href='/advanced'),
-        dcc.Link('League Leaders', href='/league_leaders')
-    ]),
+    header,
     html.H4(children='Advanced Stats'),
     dcc.Dropdown(
         id='adv-team-select',
@@ -138,12 +150,7 @@ advanced_layout = html.Div(children=[
 ])
 
 ll_layout = html.Div(children=[
-    html.Div(className='topnav', children=[
-        html.Img(src=svg),
-        dcc.Link('Per 36 stats', href='/per36'),
-        dcc.Link('Advanced Stats', href='/advanced'),
-        dcc.Link('League Leaders', href='/league_leaders')
-    ]),
+    header,
     html.H3("Select Minutes Qualifier"),
     dcc.Slider(
         className="slider",
@@ -280,6 +287,8 @@ def display_page(pathname):
         return advanced_layout
     elif pathname == '/league_leaders':
         return ll_layout
+    elif pathname == '/glossary':
+        return glossary_layout
     else:
         return index_page
 
