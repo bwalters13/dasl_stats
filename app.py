@@ -254,7 +254,7 @@ def get_df_qual(min_tsa):
 )
 def get_df(team):
     data = adv_df[adv_df.team == team]
-    cols = [{"name": i, "id": i} for i in adv_df.columns if i != 'team']
+    cols = [{"name": i, "id": i} for i in adv_df.columns[:-2] if i != 'team']
     return cols, data.to_dict('records')
 
 
