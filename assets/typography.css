@@ -32,6 +32,10 @@
         float: right;
     }
     
+    .topnav a:hover {
+        color: red;
+    }
+    
     .topnav h1 {
         display: inline;
         margin-left: 10px;
