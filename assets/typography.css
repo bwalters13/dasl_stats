@@ -11,6 +11,8 @@
     h5,
     h6 {
         color: white;
+        margin: auto;
+        text-align: center;
     }
     
     .topnav {
@@ -40,4 +42,14 @@
         display: inline;
         margin-left: 10px;
         color: mediumturquoise;
+    }
+    
+    td,
+    th {
+        font-family: cursive;
+    }
+    
+    .slider {
+        width: 50%;
+        margin: auto;
     }
