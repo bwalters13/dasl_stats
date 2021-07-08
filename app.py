@@ -4,6 +4,10 @@ import dash
 import dash_core_components as dcc
 from dash.dependencies import Input, Output
 import dash_table
+import base64
+svg_file = "demo.svg"
+encoded = base64.b64encode(open(svg_file,'rb').read()) 
+svg = 'data:image/svg+xml;base64,{}'.format(encoded.decode()) 
 
 
 df = pd.read_csv('88season.csv')
@@ -38,7 +42,7 @@ app.layout = html.Div(children=[
 
 index_page = html.Div(children=[
     html.Div(className='topnav', children=[
-        html.H1("DASL Stats"),
+        html.Img(src=svg),
         dcc.Link('Per 36 stats', href='/per36'),
         dcc.Link('Advanced Stats', href='/advanced'),
     ])
@@ -47,7 +51,7 @@ index_page = html.Div(children=[
 
 per36_layout = html.Div(children=[
     html.Div(className='topnav', children=[
-        html.H1("DASL Stats"),
+        html.Img(src=svg),
         dcc.Link('Per 36 stats', href='/per36'),
         dcc.Link('Advanced Stats', href='/advanced'),
     ]),
@@ -88,7 +92,7 @@ per36_layout = html.Div(children=[
 
 advanced_layout = html.Div(children=[
     html.Div(className='topnav', children=[
-        html.H1("DASL Stats"),
+        html.Img(src=svg),
         dcc.Link('Per 36 stats', href='/per36'),
         dcc.Link('Advanced Stats', href='/advanced'),
     ]),
