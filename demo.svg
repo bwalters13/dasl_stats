@@ -7,6 +7,6 @@
 
   <circle cx="50" cy="50" r="50" fill="green" />
 
-  <text x="50" y="60" font-size="40" text-anchor="middle" fill="yellow">DASL</text>
+  <text x="50" y="60" font-size="40" text-anchor="middle" fill="yellow" font-family="Bodoni MT">DASL</text>
 
 </svg>
