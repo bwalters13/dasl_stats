@@ -271,7 +271,9 @@ def get_df(team):
     Input('team-select', 'value')
 )
 def get_df(team):
-    data = df[df.team == team].groupby('Player').sum().reset_index()
+    data = df.groupby('Player').sum().reset_index()
+    data = data.merge(adv_df[['Player', 'team']])
+    data = data[data.team == team]
     data = getPer36(data)
     cols = [{"name": i, "id": i} for i in important_cols]
     return cols, data[important_cols].to_dict('records')
