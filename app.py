@@ -7,7 +7,39 @@ import dash_table
 import base64
 svg_file = "demo.svg"
 encoded = base64.b64encode(open(svg_file,'rb').read()) 
-svg = 'data:image/svg+xml;base64,{}'.format(encoded.decode()) 
+svg = 'data:image/svg+xml;base64,{}'.format(encoded.decode())
+
+team_colors = {
+    '76ers': 'rgb(0, 107, 182)',
+    'Bucks': 'rgb(0, 71, 27)',
+    'Bullets': 'rgb(227,24,55)',
+    'Bulls': 'rgb(206, 17, 65)',
+    'Cavaliers': 'rgb(134, 0, 56)',
+    'Cripples': 'rgb(0, 122, 51)',
+    'Clippers': 'rgb(200,16,46)',
+    'Grizzlies': 'rgb(93, 118, 169)',
+    'Hawks': 'rgb(225, 68, 52)',
+    'Heat': 'rgb(152, 0, 46)',
+    'Hornets': 'rgb(29, 17, 96)',
+    'Jazz': 'rgb(0, 43, 92)',
+    'Kings': 'rgb(91,43,130)',
+    'Knicks': 'rgb(245, 132, 38)',
+    'Lakers': 'rgb(85, 37, 130)',
+    'Magic': 'rgb(0, 125, 197)',
+    'Mavericks': 'rgb(0, 83, 188)',
+    'Nets': 'rgb(0,42,96)',
+    'Nuggets': 'rgb(81, 145, 205)',
+    'Pacers': 'rgb(253, 187, 48)',
+    'Pistons': 'rgb(237,23,76)' ,
+    'Raptors': 'rgb(117, 59, 189)',
+    'Rockets': 'rgb(186,12,47)',
+    'Spurs': 'rgb(138, 141, 143)',
+    'Suns': 'rgb(255, 105, 0)',
+    'SuperSonics': 'rgb(0,101,58)',
+    'Timberwolves': 'rgb(35, 97, 146)',
+    'Trailblazers': 'rgb(224, 58, 62)',
+    'Warriors': 'rgb(4, 30, 66)'
+}
 
 
 df = pd.read_csv('88season.csv')
@@ -131,8 +163,7 @@ advanced_layout = html.Div(children=[
             'width': '80%',
             'borderRadius': '25px',
         },
-        style_header={'backgroundColor': 'rgb(30, 30, 30)',
-                        'color': 'white'},
+        
         style_cell_conditional=[
             {
                 'if': {'column_id': c},
@@ -257,12 +288,13 @@ def get_df_qual(min_tsa):
 @app.callback(
     Output('advanced-table', 'columns'),
     Output('advanced-table', 'data'),
+    Output('advanced-table', 'style_header'),
     Input('adv-team-select', 'value')
 )
 def get_df(team):
     data = adv_df[adv_df.team == team]
     cols = [{"name": i, "id": i} for i in adv_df.columns[:-2] if i != 'team']
-    return cols, data.to_dict('records')
+    return cols, data.to_dict('records'), {'backgroundColor': team_colors[team], 'color': 'white'}
 
 
 @app.callback(
