@@ -5,6 +5,8 @@ import dash_core_components as dcc
 from dash.dependencies import Input, Output
 import dash_table
 import base64
+import numpy as np
+
 svg_file = "demo.svg"
 encoded = base64.b64encode(open(svg_file,'rb').read()) 
 svg = 'data:image/svg+xml;base64,{}'.format(encoded.decode())
@@ -28,7 +30,7 @@ team_colors = {
     'Magic': ['rgb(0, 125, 197)', 'rgb(196, 206, 211)'],
     'Mavericks': ['rgb(0, 40, 85)', 'rgb(0, 132, 61)'],
     'Nets': ['rgb(0,42,96)', 'rgb(205,16,65)'],
-    'Nuggets': ['rgb(205,16,65)', 'rgb(157, 34, 53)'],
+    'Nuggets': ['rgb(4, 30, 66)', 'rgb(157, 34, 53)'],
     'Pacers': ['rgb(253, 187, 48)', 'rgb(0, 45, 98)'],
     'Pistons': ['rgb(213,0,50)', 'rgb(0,61,165)'] ,
     'Raptors': ['rgb(117, 59, 189)', 'rgb(186, 12, 47)'],
@@ -293,7 +295,9 @@ def get_df_qual(min_tsa):
 def get_df(team):
     data = adv_df[adv_df.team == team]
     cols = [{"name": i, "id": i} for i in adv_df.columns[:-2] if i != 'team']
-    return cols, data.to_dict('records'), {'backgroundColor': team_colors[team][0], 'color': team_colors[team][1]}
+    rand_num = np.random.randint(0,2)
+    other = np.abs(-1+rand_num)
+    return cols, data.to_dict('records'), {'backgroundColor': team_colors[team][rand_num], 'color': team_colors[team][other]}
 
 
 @app.callback(
@@ -308,7 +312,9 @@ def get_df(team):
     data = data[data.team == team]
     data = getPer36(data)
     cols = [{"name": i, "id": i} for i in important_cols]
-    return cols, data[important_cols].to_dict('records'), {'backgroundColor': team_colors[team][0], 'color': team_colors[team][1]}
+    rand_num = np.random.randint(0,2)
+    other = np.abs(-1+rand_num)
+    return cols, data[important_cols].to_dict('records'), {'backgroundColor': team_colors[team][rand_num], 'color': team_colors[team][other]}
 
 @app.callback(
     Output('page-content', 'children'),
