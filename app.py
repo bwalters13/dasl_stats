@@ -10,35 +10,35 @@ encoded = base64.b64encode(open(svg_file,'rb').read())
 svg = 'data:image/svg+xml;base64,{}'.format(encoded.decode())
 
 team_colors = {
-    '76ers': 'rgb(0, 107, 182)',
-    'Bucks': 'rgb(0, 71, 27)',
-    'Bullets': 'rgb(227,24,55)',
-    'Bulls': 'rgb(206, 17, 65)',
-    'Cavaliers': 'rgb(134, 0, 56)',
-    'Cripples': 'rgb(0, 122, 51)',
-    'Clippers': 'rgb(200,16,46)',
-    'Grizzlies': 'rgb(93, 118, 169)',
-    'Hawks': 'rgb(225, 68, 52)',
-    'Heat': 'rgb(152, 0, 46)',
-    'Hornets': 'rgb(29, 17, 96)',
-    'Jazz': 'rgb(0, 43, 92)',
-    'Kings': 'rgb(91,43,130)',
-    'Knicks': 'rgb(245, 132, 38)',
-    'Lakers': 'rgb(85, 37, 130)',
-    'Magic': 'rgb(0, 125, 197)',
-    'Mavericks': 'rgb(0, 83, 188)',
-    'Nets': 'rgb(0,42,96)',
-    'Nuggets': 'rgb(81, 145, 205)',
-    'Pacers': 'rgb(253, 187, 48)',
-    'Pistons': 'rgb(237,23,76)' ,
-    'Raptors': 'rgb(117, 59, 189)',
-    'Rockets': 'rgb(186,12,47)',
-    'Spurs': 'rgb(138, 141, 143)',
-    'Suns': 'rgb(255, 105, 0)',
-    'SuperSonics': 'rgb(0,101,58)',
-    'Timberwolves': 'rgb(35, 97, 146)',
-    'Trailblazers': 'rgb(224, 58, 62)',
-    'Warriors': 'rgb(4, 30, 66)'
+    '76ers': ['rgb(0, 107, 182)', 'rgb(237, 23, 76)'],
+    'Bucks': ['rgb(0, 148, 41)', 'rgb(247, 165, 0)'],
+    'Bullets': ['rgb(227,24,55)', 'rgb(0,43,92)'],
+    'Bulls': ['rgb(206, 17, 65)', 'black'],
+    'Cavaliers': ['rgb(220, 59, 52)', 'rgb(4, 34, 92)'],
+    'Cripples': ['rgb(0, 122, 51)', 'rgb(139, 111, 78)'],
+    'Clippers': ['rgb(200,16,46)', 'rgb(29,66,148)'],
+    'Grizzlies': ['rgb(0, 178, 169)', 'rgb(228, 60, 64)'],
+    'Hawks': ['rgb(200, 16, 46)', 'rgb(228, 60, 64)'],
+    'Heat': ['rgb(152, 0, 46)', 'rgb(249, 160, 27)'],
+    'Hornets': ['rgb(0, 119, 139)', 'rgb(40, 0, 113)'],
+    'Jazz': ['rgb(117, 59, 189)', 'rgb(0, 169, 224)'],
+    'Kings': ['rgb(84,46,145)', 'rgb(196,206,212)'],
+    'Knicks': ['rgb(245, 132, 38)', 'rgb(0, 107, 182)'],
+    'Lakers': ['rgb(85, 37, 130)', 'rgb(253, 185, 39)'],
+    'Magic': ['rgb(0, 125, 197)', 'rgb(196, 206, 211)'],
+    'Mavericks': ['rgb(0, 40, 85)', 'rgb(0, 132, 61)'],
+    'Nets': ['rgb(0,42,96)', 'rgb(205,16,65)'],
+    'Nuggets': ['rgb(205,16,65)', 'rgb(157, 34, 53)'],
+    'Pacers': ['rgb(253, 187, 48)', 'rgb(0, 45, 98)'],
+    'Pistons': ['rgb(213,0,50)', 'rgb(0,61,165)'] ,
+    'Raptors': ['rgb(117, 59, 189)', 'rgb(186, 12, 47)'],
+    'Rockets': ['rgb(186,12,47)', 'black'],
+    'Spurs': ['rgb(138, 141, 143)', 'black'],
+    'Suns': ['rgb(255, 105, 0)', 'rgb(95, 37, 159)'],
+    'SuperSonics': ['rgb(0,101,58)', 'rgb(255,194,32)'],
+    'Timberwolves': ['rgb(35, 97, 146)', 'rgb(0, 132, 61)'],
+    'Trailblazers': ['rgb(224, 58, 62)', 'black'],
+    'Warriors': ['rgb(4, 30, 66)', 'rgb(190, 58, 52)']
 }
 
 
@@ -123,8 +123,6 @@ per36_layout = html.Div(children=[
         id='table',
         sort_action='native',
         style_table={'width': '80%'},
-        style_header={'backgroundColor': 'rgb(30, 30, 30)',
-                        'color': 'white'},
         style_cell_conditional=[
             {
                 'if': {'column_id': c},
@@ -137,7 +135,8 @@ per36_layout = html.Div(children=[
                 'backgroundColor': 'rgb(248, 248, 248)'
             }
         ],
-    style_cell={'fontFamily': 'cursive'}
+    style_cell={'fontFamily': 'cursive',
+    }
     ),
 ])
 
@@ -294,12 +293,13 @@ def get_df_qual(min_tsa):
 def get_df(team):
     data = adv_df[adv_df.team == team]
     cols = [{"name": i, "id": i} for i in adv_df.columns[:-2] if i != 'team']
-    return cols, data.to_dict('records'), {'backgroundColor': team_colors[team], 'color': 'white'}
+    return cols, data.to_dict('records'), {'backgroundColor': team_colors[team][0], 'color': team_colors[team][1]}
 
 
 @app.callback(
     Output('table', 'columns'),
     Output('table', 'data'),
+    Output('table', 'style_header'),
     Input('team-select', 'value')
 )
 def get_df(team):
@@ -308,7 +308,7 @@ def get_df(team):
     data = data[data.team == team]
     data = getPer36(data)
     cols = [{"name": i, "id": i} for i in important_cols]
-    return cols, data[important_cols].to_dict('records')
+    return cols, data[important_cols].to_dict('records'), {'backgroundColor': team_colors[team][0], 'color': team_colors[team][1]}
 
 @app.callback(
     Output('page-content', 'children'),
