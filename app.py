@@ -8,8 +8,11 @@ import base64
 import numpy as np
 
 svg_file = "demo.svg"
-encoded = base64.b64encode(open(svg_file,'rb').read()) 
+line_file = "line.svg"
+encoded = base64.b64encode(open(svg_file,'rb').read())
+encoded_line = base64.b64encode(open(line_file,'rb').read()) 
 svg = 'data:image/svg+xml;base64,{}'.format(encoded.decode())
+line = 'data:image/svg+xml;base64,{}'.format(encoded_line.decode())
 
 team_colors = {
     '76ers': ['rgb(0, 107, 182)', 'rgb(237, 23, 76)'],
@@ -71,7 +74,7 @@ app.title = 'DASL Stats'
 
 header = html.Div(className='topnav', children=[
         html.Img(src=svg),
-        dcc.Link('Per 36 stats', href='/per36'),
+        dcc.Link('Per 36 stats', href='/per36'),        
         dcc.Link('Advanced Stats', href='/advanced'),
         dcc.Link('League Leaders', href='/league_leaders'),
         dcc.Link('Glossary', href='/glossary')
