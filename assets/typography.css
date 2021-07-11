@@ -1,65 +1,65 @@
-    body {
-        font-family: monospace;
-        background-image: url('Untitled.png');
-        background-attachment: fixed;
-    }
-    
-    h1,
-    h2,
-    h3 {
-        color: white;
-        margin: auto;
-        text-align: center;
-    }
-    
-    .topnav {
-        background-color: black;
-        overflow: hidden;
-        width: 101%;
-        margin-left: -8px;
-        padding-top: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: -10px;
-        margin-top: -8px;
-    }
-    
-    .topnav a {
-        display: inline;
-        color: white;
-        text-align: center;
-        padding-right: 16px;
-        padding-left: 16px;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-right: 10px;
-        text-decoration: underline;
-        font-size: 25px;
-        font-family: Bodoni MT;
-        float: right;
-    }
-    
-    .topnav a:hover {
-        color: red;
-    }
-    
-    .topnav h1 {
-        display: inline;
-        margin-left: 10px;
-        color: mediumturquoise;
-    }
-    
-    td,
-    th {
-        font-family: cursive;
-    }
-    
-    .slider {
-        width: 50%;
-        margin: auto;
-    }
-    
-    .glossary {
-        background-color: peachpuff;
-        background-image: none;
-    }
+body {
+    font-family: monospace;
+    background-image: url('Untitled.png');
+    background-attachment: fixed;
+}
+
+h1,
+h2,
+h3 {
+    color: white;
+    margin: auto;
+    text-align: center;
+}
+
+.topnav {
+    background-color: black;
+    overflow: hidden;
+    width: 101%;
+    margin-left: -8px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: -10px;
+    margin-top: -8px;
+}
+
+.topnav a {
+    display: inline;
+    color: white;
+    text-align: center;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    text-decoration: underline;
+    font-size: 25px;
+    font-family: Bodoni MT;
+    float: right;
+}
+
+.topnav a:hover {
+    color: greenyellow;
+}
+
+.topnav h1 {
+    display: inline;
+    margin-left: 10px;
+    color: mediumturquoise;
+}
+
+td,
+th {
+    font-family: cursive;
+}
+
+.slider {
+    width: 50%;
+    margin: auto;
+}
+
+.glossary {
+    background-color: peachpuff;
+    background-image: none;
+}

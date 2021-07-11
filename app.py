@@ -7,9 +7,11 @@ import dash_table
 import base64
 import numpy as np
 
+
 svg_file = "demo.svg"
 encoded = base64.b64encode(open(svg_file,'rb').read())
 svg = 'data:image/svg+xml;base64,{}'.format(encoded.decode())
+
 
 team_colors = {
     '76ers': ['rgb(0, 107, 182)', 'rgb(237, 23, 76)'],
