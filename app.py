@@ -71,7 +71,7 @@ app.title = 'DASL Stats'
 
 header = html.Div(className='topnav', children=[
         html.Img(src=svg),
-        dcc.Link('Per 36 stats', href='/per36'),            
+        dcc.Link('Per 36 Stats', href='/per36'),            
         dcc.Link('Advanced Stats', href='/advanced'),
         dcc.Link('League Leaders', href='/league_leaders'),
         dcc.Link('Glossary', href='/glossary')
