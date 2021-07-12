@@ -33,14 +33,16 @@ h3 {
     margin-top: auto;
     margin-bottom: auto;
     margin-right: 10px;
-    text-decoration: underline;
+    text-decoration: none;
     font-size: 25px;
     font-family: Bodoni MT;
     float: right;
+    transition: all 1s ease;
 }
 
 .topnav a:hover {
     color: greenyellow;
+    text-decoration: underline;
 }
 
 .topnav h1 {
