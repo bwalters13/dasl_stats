@@ -1,13 +1,13 @@
 body {
     font-family: monospace;
-    background-image: url('Untitled.png');
+    background-color: peachpuff;
     background-attachment: fixed;
 }
 
 h1,
 h2,
 h3 {
-    color: white;
+    color: turquoise;
     margin: auto;
     text-align: center;
 }

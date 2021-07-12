@@ -110,13 +110,14 @@ glossary_layout = html.Div(className='glossary',
 
 per36_layout = html.Div(children=[
     header,
-    html.H4(children='Per 36 Stats'),
+    html.H4(children='Per 36 Stats', style={'color': 'turquoise', 'font-family': 'futura', 'text-align': 'center', 'font-weight': 'bold'}),
     dcc.Dropdown(
         id='team-select',
         style={
             'color': 'black',
             'width': '50%',
             'fontSize': '20px',
+            'margin': 'auto',
         },
         options=[
             {'label': team, 'value': team}
@@ -126,7 +127,7 @@ per36_layout = html.Div(children=[
     dash_table.DataTable(
         id='table',
         sort_action='native',
-        style_table={'width': '80%'},
+        style_table={'width': '80%', 'margin': 'auto'},
         style_cell_conditional=[
             {
                 'if': {'column_id': c},
@@ -146,13 +147,14 @@ per36_layout = html.Div(children=[
 
 advanced_layout = html.Div(children=[
     header,
-    html.H4(children='Advanced Stats'),
+    html.H4(children='Advanced Stats', style={'color': 'turquoise', 'font-family': 'futura', 'text-align': 'center', 'font-weight': 'bold'}),
     dcc.Dropdown(
         id='adv-team-select',
         style={
             'color': 'black',
             'width': '50%',
             'fontSize': '20px',
+            'margin': 'auto',
         },
         options=[
             {'label': team, 'value': team}
@@ -164,7 +166,7 @@ advanced_layout = html.Div(children=[
         sort_action='native',
         style_table={
             'width': '80%',
-            'borderRadius': '25px',
+            'margin': 'auto',
         },
         
         style_cell_conditional=[
