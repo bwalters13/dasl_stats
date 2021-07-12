@@ -12,6 +12,7 @@ svg_file = "demo.svg"
 encoded = base64.b64encode(open(svg_file,'rb').read())
 svg = 'data:image/svg+xml;base64,{}'.format(encoded.decode())
 
+header_style= {'backgroundColor': '#DCDCDC', 'color': 'orange', 'font-family': 'futura'}
 
 team_colors = {
     '76ers': ['rgb(0, 107, 182)', 'rgb(237, 23, 76)'],
@@ -205,7 +206,8 @@ ll_layout = html.Div(children=[
         style_table={
             'width': "50%",
             'margin': 'auto'
-        }
+        },
+        style_header=header_style,
     ),
     html.Br(),
     html.H2("Usage Leaders"),
@@ -216,7 +218,8 @@ ll_layout = html.Div(children=[
         style_table={
             'width': "50%",
             'margin': 'auto'
-        }
+        },
+        style_header=header_style,
     ),
     html.Br(),
     html.H2("Floor Percentage Leaders"),
@@ -227,7 +230,8 @@ ll_layout = html.Div(children=[
         style_table={
             'width': "50%",
             'margin': 'auto'
-        }
+        },
+        style_header=header_style,
     ),
     html.Br(),
     html.H2("Scoring Possessions Leaders"),
@@ -238,7 +242,8 @@ ll_layout = html.Div(children=[
         style_table={
             'width': "50%",
             'margin': 'auto'
-        }
+        },
+        style_header=header_style,
     ),
     html.Br(),
     html.H2("Possessions Leaders"),
@@ -249,7 +254,8 @@ ll_layout = html.Div(children=[
         style_table={
             'width': "50%",
             'margin': 'auto'
-        }
+        }, 
+        style_header=header_style,
     ),
 ])
 
