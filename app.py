@@ -110,7 +110,7 @@ glossary_layout = html.Div(className='glossary',
 
 per36_layout = html.Div(children=[
     header,
-    html.H4(children='Per 36 Stats', style={'color': 'turquoise', 'font-family': 'futura', 'text-align': 'center', 'font-weight': 'bold'}),
+    html.H4(children='Per 36 Stats', style={'color': 'orange', 'font-family': 'futura', 'text-align': 'center', 'font-weight': 'bold'}),
     dcc.Dropdown(
         id='team-select',
         style={
@@ -147,7 +147,7 @@ per36_layout = html.Div(children=[
 
 advanced_layout = html.Div(children=[
     header,
-    html.H4(children='Advanced Stats', style={'color': 'turquoise', 'font-family': 'futura', 'text-align': 'center', 'font-weight': 'bold'}),
+    html.H4(children='Advanced Stats', style={'color': 'orange', 'font-family': 'futura', 'text-align': 'center', 'font-weight': 'bold'}),
     dcc.Dropdown(
         id='adv-team-select',
         style={
