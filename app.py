@@ -194,9 +194,9 @@ ll_layout = html.Div(children=[
         id="qualifier",
         min=0,
         max= int(adv_df["MIN_player"].max())+1,
-        step=20,
-        marks={ i:str(i) for i in range(0, int(adv_df["MIN_player"].max())+1, 100)},
-        value=100,
+        step=40,
+        marks={ i:str(i) for i in range(0, int(adv_df["MIN_player"].max())+1, 200)},
+        value=400,
     ), 
     html.H2("True Shooting Leaders"),
     dash_table.DataTable(
