@@ -46,10 +46,12 @@ h3 {
     text-decoration: underline;
 }
 
-.topnav h1 {
-    display: inline;
-    margin-left: 10px;
-    color: mediumturquoise;
+.topnav h1,
+h6 {
+    position: relative;
+    float: right;
+    margin-right: 10vw;
+    color: whitesmoke;
 }
 
 td,
