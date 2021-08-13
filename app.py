@@ -6,6 +6,7 @@ from dash.dependencies import Input, Output
 import dash_table
 import base64
 import numpy as np
+import math
 
 
 svg_file = "demo.svg"
@@ -47,7 +48,7 @@ team_colors = {
 }
 
 
-df = pd.read_csv('88season.csv')
+df = pd.read_csv('89season.csv')
 df['team'] = df['team'].replace("Celtics", "Cripples")
 df_team = df.groupby('team').sum()
 df_team['num_games'] = df.groupby('team')['game_id'].nunique()
@@ -55,7 +56,8 @@ for x in df_team.columns[1:14]:
     df_team[x] = (df_team[x]/df_team['num_games']).round(2)
 df_team_avg = df_team[df_team.columns[1:14]].reset_index()
 per36 = df.columns[3:16].tolist()
-adv_df = pd.read_csv('88advanced.csv')
+adv_df = pd.read_csv('89advanced.csv')
+min_limit = math.ceil(adv_df['MIN_player'].describe()['25%']/10)*10
 
 important_cols = ['Player'] + df.columns[2:16].tolist()
 
@@ -198,7 +200,7 @@ ll_layout = html.Div(children=[
         max= int(adv_df["MIN_player"].max())+1,
         step=40,
         marks={ i:str(i) for i in range(0, int(adv_df["MIN_player"].max())+1, 200)},
-        value=400,
+        value=min_limit,
     ), 
     html.H2("True Shooting Leaders"),
     dash_table.DataTable(
