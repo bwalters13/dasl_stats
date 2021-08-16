@@ -21,7 +21,7 @@ team_colors = {
     'Bullets': ['rgb(227,24,55)', 'rgb(0,43,92)'],
     'Bulls': ['rgb(206, 17, 65)', 'black'],
     'Cavaliers': ['rgb(220, 59, 52)', 'rgb(4, 34, 92)'],
-    'Cripples': ['rgb(0, 122, 51)', 'rgb(139, 111, 78)'],
+    'Celtics': ['rgb(0, 122, 51)', 'rgb(139, 111, 78)'],
     'Clippers': ['rgb(200,16,46)', 'rgb(29,66,148)'],
     'Grizzlies': ['rgb(0, 178, 169)', 'rgb(228, 60, 64)'],
     'Hawks': ['rgb(200, 16, 46)', 'rgb(228, 60, 64)'],
@@ -49,7 +49,6 @@ team_colors = {
 
 
 df = pd.read_csv('89season.csv')
-df['team'] = df['team'].replace("Celtics", "Cripples")
 df_team = df.groupby('team').sum()
 df_team['num_games'] = df.groupby('team')['game_id'].nunique()
 for x in df_team.columns[1:14]:
