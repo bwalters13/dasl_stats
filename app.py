@@ -315,7 +315,7 @@ def get_df_qual(min_tsa):
 )
 def get_df(team):
     data = adv_df[adv_df.team == team]
-    cols = [{"name": i, "id": i} for i in adv_df.columns[:-2] if i != 'team']
+    cols = [{"name": i, "id": i} for i in adv_df.columns[:-1] if i != 'team']
     rand_num = np.random.randint(0,2)
     other = np.abs(-1+rand_num)
     return cols, data.to_dict('records'), {'backgroundColor': team_colors[team][rand_num], 'color': team_colors[team][other]}
