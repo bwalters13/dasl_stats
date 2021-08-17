@@ -59,11 +59,19 @@ adv_df = pd.read_csv('89advanced.csv')
 min_limit = math.ceil(adv_df['MIN_player'].describe()['25%']/10)*10
 
 important_cols = ['Player'] + df.columns[2:16].tolist()
+important_cols.insert(4, 'FG%')
+important_cols.insert(7, '3P%')
+important_cols.insert(10, 'FT%')
+
 
 
 def getPer36(df):
     for x in per36:
         df[x] = ((df[x]/df['MIN'])*36).round(2)
+    df['FG%'] = ((df['FG']/df['FGA'])*100).round(2)
+    df['3P%'] = ((df['3P']/df['3PA'])*100).round(2)
+    df['FT%'] = ((df['FT']/df['FTA'])*100).round(2)
+
     return df
 
 
