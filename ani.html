@@ -1,0 +1,58 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Animation</title>
+    <style>
+        #line1,
+        #line2 {
+            transition: all .2s;
+            opacity: 0;
+            transform: scaleX(0%);
+            transform-origin: 50% 50%;
+        }
+        
+        .main:hover #line1 {
+            opacity: 1;
+            transform: scaleX(.5);
+        }
+        
+        .main:hover #line2 {
+            opacity: 1;
+            transform: scaleX(.5);
+        }
+        
+        a {
+            text-decoration: none;
+            position: absolute;
+            margin: auto;
+            text-align: center;
+            padding-top: 10px;
+            padding-left: 3%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <a class="a" href="">TEST</a>
+        <svg width="120" height="69" viewBox="0 0 120 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="120" height="69" fill="#E5E5E5"/>
+            <rect width="120" height="69" fill="white"/>
+            <line y1="33.5" x2="60" y2="33.5" stroke="black" id="line1"/>
+            <line x1="60" y1="33.5" x2="120" y2="33.5" stroke="black" id="line2"/>
+            </svg>
+
+        <a class="a" href="">TEST</a>
+        <svg width="120" height="69" viewBox="0 0 120 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="120" height="69" fill="#E5E5E5"/>
+                <rect width="120" height="69" fill="white"/>
+                <line y1="33.5" x2="60" y2="33.5" stroke="black" id="line1"/>
+                <line x1="60" y1="33.5" x2="120" y2="33.5" stroke="black" id="line2"/>
+                </svg>
+
+    </div>
+
+</body>
+
+</html>
