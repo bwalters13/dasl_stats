@@ -8,7 +8,7 @@ import base64
 import numpy as np
 import math
 
-
+season = 1994
 svg_file = "demo.svg"
 encoded = base64.b64encode(open(svg_file,'rb').read())
 svg = 'data:image/svg+xml;base64,{}'.format(encoded.decode())
@@ -48,14 +48,14 @@ team_colors = {
 }
 
 
-df = pd.read_csv('93season.csv')
+df = pd.read_csv(f'{season}season.csv')
 df_team = df.groupby('team').sum()
 df_team['num_games'] = df.groupby('team')['game_id'].nunique()
 for x in df_team.columns[1:14]:
     df_team[x] = (df_team[x]/df_team['num_games']).round(2)
 df_team_avg = df_team[df_team.columns[1:14]].reset_index()
 per36 = df.columns[3:16].tolist()
-adv_df = pd.read_csv('93advanced.csv')
+adv_df = pd.read_csv(f'{season}advanced.csv')
 min_limit = math.ceil(adv_df['MIN_player'].describe()['25%']/10)*10
 
 important_cols = ['Player'] + df.columns[2:16].tolist()
