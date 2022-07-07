@@ -87,7 +87,7 @@ header = html.Div(className='topnav', children=[
         dcc.Link('Advanced Stats', href='/advanced'),
         dcc.Link('League Leaders', href='/league_leaders'),
         dcc.Link('Glossary', href='/glossary'),
-        html.H6("Updated through Day {}".format(df['day'].max()))
+        html.H6("Updated through Day {}".format(int(df['day'].max())))
     ]
     )
 
