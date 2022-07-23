@@ -56,7 +56,7 @@ for x in df_team.columns[1:14]:
 df_team_avg = df_team[df_team.columns[1:14]].reset_index()
 per36 = df.columns[3:16].tolist()
 adv_df = pd.read_csv(f'{season}advanced.csv')
-min_limit = math.ceil(adv_df['MIN_player'].describe()['25%']/10)*10
+min_limit = math.ceil(adv_df['MIN_player'].describe()['50%']/10)*10
 
 important_cols = ['Player'] + df.columns[2:16].tolist()
 important_cols.insert(4, 'FG%')
