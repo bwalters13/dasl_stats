@@ -8,7 +8,7 @@ import base64
 import numpy as np
 import math
 
-season = 96
+season = 97
 svg_file = "demo.svg"
 encoded = base64.b64encode(open(svg_file,'rb').read())
 svg = 'data:image/svg+xml;base64,{}'.format(encoded.decode())
