@@ -151,9 +151,7 @@ per36_layout = html.Div(children=[
                 'if': {'row_index': 'odd'},
                 'backgroundColor': 'rgb(248, 248, 248)'
             }
-        ],
-    style_cell={'fontFamily': 'cursive',
-    }
+        ]
     ),
 ])
 
@@ -192,8 +190,7 @@ advanced_layout = html.Div(children=[
                 'if': {'row_index': 'odd'},
                 'backgroundColor': 'rgb(248, 248, 248)'
             }
-        ],
-    style_cell={'fontFamily': 'cursive'}
+        ]
     ),
 ])
 
