@@ -6,7 +6,7 @@ import time
 import os
 import sys
 jac = 'Juan Antonio Corbalán'
-season = int(sys.argv[1])
+year = int(sys.argv[1])
 first_day = int(sys.argv[2])
 current_day = int(sys.argv[3])
 links = []
@@ -17,6 +17,7 @@ for x in range(first_day, current_day+1):
     links.extend(['http://ducksattack.com/DASL/boxes/' + x['href'] for x in soup.find_all('a') if x.text == 'Box Score'])
 
 def get_game(url):
+    print(url)
     dfs = pd.read_html(url)
     team1 = dfs[1].columns[0]
     team2 = dfs[2].columns[0]
@@ -30,16 +31,18 @@ def get_game(url):
     df2['day'] = url.split('/')[-1].split('-')[0]
     return pd.concat((df1,df2))
 
-if f"{season}season.csv" in os.listdir():
-    season = pd.read_csv(f"{season}season.csv")
+if f"{year}season.csv" in os.listdir():
+    season = pd.read_csv(f"{year}season.csv")
+    i = season.game_id.max() + 1
 else:     
     season = pd.DataFrame()
-i = 0
+    i = 0
+
 print(len(season))
 for index, link in enumerate(links):
     time.sleep(.1)
     temp = get_game(link)
-    temp['game_id'] = index
+    temp['game_id'] = index + i
     season = pd.concat((season, temp))
 
 season['day'] = pd.to_numeric(season['day'], errors='coerce')
@@ -55,8 +58,12 @@ for x in season.loc[season.Usage.isna()].index:
     this_game = season.iloc[x]
     season.loc[x,'Usage'] = (100*(season.loc[x,'FGA'] + .44*season.loc[x,'FTA'] + season.loc[x,'TO'])*(this_game['MIN'].sum()/5))/((this_game['FGA'].sum() + .44*this_game['FTA'].sum() + this_game['TO'].sum())*season.loc[x,'MIN'])
     
+
 for x in season.columns[3:16]:
+    season[x] = pd.to_numeric(season[x], errors='coerce')
     season['{}/36'.format(x)] = (season[x]/season['MIN'])*36
 
-season.to_csv('96season.csv', index=False)
+season.loc[(season.Player == 'Charles Smith') & (season.team != 'Raptors'), 'Player'] = 'Charles Smith Dos'
+
+season.to_csv(f'{year}season.csv', index=False)
 
